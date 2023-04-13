@@ -1,0 +1,123 @@
+#debug {
+  display: none;
+}
+#debug ul {
+  list-style: none;
+  padding: 0px;
+}
+#debug ul li {
+  display: inline-block;
+}
+#debug ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0px 15px;
+}
+
+html, body {
+  background: #2F3040;
+}
+
+#game {
+  display: block;
+  max-width: 375px;
+  height: 100%;
+  margin: 30px auto;
+  padding: 10px;
+  border: 1px solid #292A39;
+}
+#game .board {
+  display: flex;
+  flex-wrap: wrap;
+}
+#game .board .board__item {
+  position: relative;
+  background: #292A39;
+  margin: 1px 1px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#game .board .board__item:after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: auto;
+  border-radius: 100%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 1;
+  background: currentColor;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, opacity 0.3s;
+}
+#game .board .board__item:hover:after {
+  width: 64%;
+  height: 64%;
+  top: 18%;
+  left: 18%;
+}
+#game .board .board__item.board__item--disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+#game .board.board--two .board__item {
+  width: calc(50% - 2px);
+  padding-top: calc(50% - 2px);
+}
+#game .board.board--three .board__item {
+  width: calc(33.3333333333% - 2px);
+  padding-top: calc(33.3333333333% - 2px);
+}
+#game .board.board--four .board__item {
+  width: calc(25% - 2px);
+  padding-top: calc(25% - 2px);
+}
+#game .board.board--five .board__item {
+  width: calc(20% - 2px);
+  padding-top: calc(20% - 2px);
+}
+#game .board.board--six .board__item {
+  width: calc(16.6666666667% - 2px);
+  padding-top: calc(16.6666666667% - 2px);
+}
+#game .board.board--seven .board__item {
+  width: calc(14.2857142857% - 2px);
+  padding-top: calc(14.2857142857% - 2px);
+}
+#game .board .board__item--red {
+  color: #E61111;
+}
+#game .board .board__item--red.board__item--active {
+  background: #5e0000;
+}
+#game .board .board__item--green {
+  color: #52E612;
+}
+#game .board .board__item--green.board__item--active {
+  background: #1d5f00;
+}
+#game .board .board__item--yellow {
+  color: #E6D811;
+}
+#game .board .board__item--yellow.board__item--active {
+  background: #5e5800;
+}
+#game .board .board__item--blue {
+  color: #11C6E6;
+}
+#game .board .board__item--blue.board__item--active {
+  background: #00505e;
+}
+#game .board .board__item--purple {
+  color: #A811E6;
+}
+#game .board .board__item--purple.board__item--active {
+  background: #43005e;
+}
+#game .board .board__item--pink {
+  color: #E6118D;
+}
+#game .board .board__item--pink.board__item--active {
+  background: #5e0037;
+}

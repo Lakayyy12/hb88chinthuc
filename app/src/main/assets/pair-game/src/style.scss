@@ -1,0 +1,161 @@
+// debug navigation
+#debug
+{
+  display:none;
+  
+  ul
+  {
+    list-style:none;
+    padding: 0px;
+    
+    li
+    {
+      display: inline-block;
+      
+      a
+      {
+        color: white;
+        text-decoration: none;
+        padding: 0px 15px;
+      }
+    }
+  }
+}
+
+
+//     Colors
+@function adjust-color( $color )
+{
+  @return  darken(saturate( $color, 100% ), 30%);
+}
+
+$dark: #2F3040;
+$darker: #292A39;
+
+$red: #E61111;
+$red--dark: adjust-color( $red );
+
+$green: #52E612;
+$green--dark: adjust-color( $green );
+
+$yellow: #E6D811;
+$yellow--dark: adjust-color($yellow);
+
+$blue: #11C6E6;
+$blue--dark: adjust-color($blue);
+
+$purple: #A811E6;
+$purple--dark: adjust-color($purple);
+
+$pink: #E6118D;
+$pink--dark: adjust-color($pink);
+
+html, body
+{
+  background: $dark; 
+}
+
+#game
+{
+  display: block;
+  
+  max-width: 375px;
+  height: 100%;
+  margin: 30px auto;
+  padding: 10px;
+  
+  border: 1px solid $darker;
+  
+  .board
+  {
+    display: flex;
+    flex-wrap: wrap;
+    
+    .board__item
+    {
+      position: relative;
+      
+      background: $darker;
+      margin: 1px 1px;
+      border-radius: 5px;
+      cursor: pointer;
+      
+      &:after
+      {
+        content: "";
+        display: block;
+        width: 60%;
+        height: 60%;
+        margin: auto;
+        border-radius: 100%;
+        
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+        
+        background: currentColor;
+        transition: width .3s, height .3s, top .3s, left .3s, opacity .3s;
+      }
+        
+      &:hover
+      {
+        &:after
+        {
+          width: 64%;
+          height: 64%;
+          top: 18%;
+          left: 18%;
+        }
+      }
+
+      &.board__item--disabled
+      {
+        opacity: .2;
+        pointer-events: none;
+      }
+    }
+    
+//     Levels
+    @mixin level($name, $qty)
+    {
+      &.board--#{$name}
+      {
+        .board__item
+        {
+          width: calc(#{100 / $qty}% - 2px);
+          padding-top: calc(#{100 / $qty}% - 2px);
+        }
+      }
+    }
+    
+    @include level('two', 2);
+    @include level('three', 3);
+    @include level('four', 4);
+    @include level('five', 5);
+    @include level('six', 6);   
+    @include level('seven', 7);   
+
+//  Colors
+    
+    @mixin color($name, $color, $colorActive)
+    {
+      .board__item--#{$name}
+      {
+        color: $color;
+        
+        &.board__item--active
+        {
+          background: $colorActive;
+        }
+      }
+    }
+    
+    @include color('red', $red, $red--dark);
+    @include color('green', $green, $green--dark);
+    @include color('yellow', $yellow, $yellow--dark);
+    @include color('blue', $blue, $blue--dark);
+    @include color('purple', $purple, $purple--dark);
+    @include color('pink', $pink, $pink--dark);
+  }
+}

@@ -1,0 +1,9 @@
+article#game
+  nav#debug
+    ul
+      - var n = 0
+      while (n++ < 5)
+        li 
+          a(href="#", data-level=(n-1))= n
+
+  div#board.board
